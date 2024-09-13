@@ -58,32 +58,36 @@ class _AnasayfaState extends State<Anasayfa> {
   }
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: color2,
+        centerTitle: true,
+        title: Text(
+          "getir",
+          style: TextStyle(
+            fontFamily: "playpen",
+            color: color1,
+            fontSize: 25,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        elevation: 3,
+        toolbarHeight: 60,
+        // AppBar içinde alanları hizalamak için
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: color2,
+                width: 3,
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
             children: [
-              SafeArea(
-                child: Container(
-                  color: Colors.black,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: color2,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10), // Sol üst köşe oval
-                          topRight: Radius.circular(10), // Sağ üst köşe oval
-                        ),
-                        color: color2,
-                      ),
-                      alignment: Alignment.center,
-                      width: double.maxFinite,
-                      height: 50,
-                      child: Text("getir",style: TextStyle(fontFamily: "playpen",color: color1,fontSize: 25,fontWeight: FontWeight.w700),),
-                    ),
-                  ),
-              ),
               Column(
                 children: [
                   Row(
@@ -92,7 +96,7 @@ class _AnasayfaState extends State<Anasayfa> {
                       Container(
                         alignment: Alignment.centerLeft,
                         height: 50,
-                        width: 392,
+                        width: MediaQuery.of(context).size.width,
                         color: color1,
                         child: Row(
                           children: [
@@ -123,7 +127,7 @@ class _AnasayfaState extends State<Anasayfa> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left:12),
+                              padding: const EdgeInsets.only(left:15),
                               child: Column(
                                 children: [
                                   Text("TVS",style: TextStyle(color: color2),),
@@ -150,7 +154,7 @@ class _AnasayfaState extends State<Anasayfa> {
                       if(snapshot.hasData){
                         var kategoriListesi = snapshot.data;
                         return SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.6,
+                          height: MediaQuery.of(context).size.height*0.6,
                           child: GridView.builder(
                             itemCount: kategoriListesi!.length,
                             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -190,7 +194,32 @@ class _AnasayfaState extends State<Anasayfa> {
                   ),
                 ],
               ),
-
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height:55,
+        child: BottomAppBar(
+          color: Colors.white,
+          elevation: 0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IconButton(icon: Icon(Icons.home, size: 30, color: color2), onPressed: () {}),
+              IconButton(icon: Icon(Icons.search, size: 30,color: color4,), onPressed: () {}),
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: color2,
+                ),
+                child: Icon(Icons.menu_outlined, color: color1,size: 20,),
+              ),
+              IconButton(icon: Icon(Icons.account_circle, size: 30,color: color4,), onPressed: () {}),
+              IconButton(icon: Icon(Icons.card_giftcard, size: 30,color: color4,), onPressed: () {}),
             ],
           ),
         ),
